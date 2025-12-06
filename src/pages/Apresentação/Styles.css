@@ -14,6 +14,7 @@
 .sobre-box,
 .ranking-preview {
     min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -26,6 +27,18 @@
     margin-bottom: 0;
     text-align: center;
     border: none;
+    border-top: 2px solid #000000;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.apresentacao-header {
+    padding-top: 64px;
+}
+
+.sobre-box {
+    padding: 60px 20px;
+    justify-content: flex-start;
 }
 
 .apresentacao-title {
@@ -197,43 +210,245 @@
     font-family: 'Segoe UI', 'Arial', sans-serif;
 }
 
-.ranking-preview-title {
-    font-size: 24px;
+.team-section {
+    margin-top: 50px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.team-title {
+    font-size: 28px;
     color: #000000;
     font-weight: 700;
-    margin-bottom: 18px;
+    margin-bottom: 40px;
     font-family: 'Segoe UI', 'Arial', sans-serif;
+    text-align: center;
+}
+
+.team-cards {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.team-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    flex: 1;
+    min-width: 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 25px rgba(53, 81, 105, 0.2);
+}
+
+.team-photo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, #355169 0%, #2a4153 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(53, 81, 105, 0.3);
+}
+
+.photo-placeholder {
+    font-size: 36px;
+    font-weight: 700;
+    color: #ffffff;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+
+.team-info {
+    text-align: center;
+}
+
+.team-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 8px;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+
+.team-role {
+    font-size: 16px;
+    font-weight: 600;
+    color: #355169;
+    margin-bottom: 15px;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+
+.team-description {
+    font-size: 15px;
+    color: #333333;
+    line-height: 1.6;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    text-align: left;
+}
+
+.ranking-content-wrapper {
+    display: flex;
+    gap: 50px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 40px;
+    align-items: flex-start;
+}
+
+.ranking-info-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ranking-table-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.ranking-section-title {
+    font-size: 28px;
+    color: #000000;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+
+.info-card {
+    background: #ffffff;
+    border-left: 4px solid #355169;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.info-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(53, 81, 105, 0.15);
+}
+
+.info-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #355169;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+
+.info-card-text {
+    font-size: 15px;
+    color: #333333;
+    line-height: 1.6;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    margin: 0;
+}
+
+.ranking-table-container {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
 .ranking-preview-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
     background: #fff;
-    border-radius: 0;
-    overflow: hidden;
-    box-shadow: none;
-}
-
-.ranking-preview-table th, .ranking-preview-table td {
-    padding: 12px 10px;
-    text-align: center;
-    border-bottom: 1px solid #f0f0f0;
-    font-size: 16px;
 }
 
 .ranking-preview-table th {
     background: #355169;
     color: #ffffff;
     font-weight: 700;
+    padding: 15px 12px;
+    text-align: left;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.ranking-preview-table tr:nth-child(even) {
-    background: #f5f5f5;
+.ranking-preview-table td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 15px;
 }
 
-.ranking-preview-table tr:hover {
-    background: #d4dce3;
+.ranking-preview-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.ranking-position {
+    font-weight: 700;
+    color: #355169;
+    font-size: 18px;
+    width: 50px;
+    text-align: center;
+}
+
+.ranking-name {
+    font-weight: 600;
+    color: #000000;
+}
+
+.ranking-score {
+    font-weight: 700;
+    color: #355169;
+}
+
+.score-value {
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.score-stars {
+    font-size: 14px;
+}
+
+.ranking-count {
+    color: #666666;
+    text-align: center;
+}
+
+.btn-ver-ranking {
+    background: #355169;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    align-self: center;
+}
+
+.btn-ver-ranking:hover {
+    background: #2a4153;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(53, 81, 105, 0.3);
+}
+
+.ranking-loading,
+.ranking-empty {
+    text-align: center;
+    color: #666666;
+    font-size: 16px;
+    padding: 40px;
 }
 
 .apresentacao-bg-neon {
@@ -242,6 +457,64 @@
 
 .sobre-bg-amarelo {
     background: #ffffff;
+    padding-top: 100px;
+    padding-bottom: 60px;
+}
+
+.contact-section {
+    margin-top: 60px;
+    width: 100%;
+    max-width: 800px;
+    padding: 40px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.contact-title {
+    font-size: 28px;
+    color: #000000;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    text-align: center;
+}
+
+.contact-info {
+    text-align: center;
+}
+
+.contact-text {
+    font-size: 17px;
+    color: #333333;
+    margin-bottom: 25px;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    color: #355169;
+    font-weight: 600;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+
+.contact-icon {
+    font-size: 24px;
+}
+
+.contact-label {
+    color: #333333;
 }
 
 @media (max-width: 900px) {
@@ -259,6 +532,11 @@
     .apresentacao-header {
         padding: 24px 0 18px 0;
         min-height: 100vh;
+    }
+    
+    /* Ocultar seção de ranking em mobile */
+    .ranking-preview {
+        display: none;
     }
     .features-section {
         gap: 40px;
@@ -296,17 +574,33 @@
     .ranking-preview,
     .sobre-box {
         padding: 40px 20px;
-        min-height: auto;
+        min-height: 100vh;
     }
-    .ranking-preview-table {
+    .ranking-content-wrapper {
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+    }
+    .ranking-section-title {
+        font-size: 24px;
+    }
+    .info-card {
+        padding: 16px;
+    }
+    .info-card-title {
+        font-size: 16px;
+    }
+    .info-card-text {
         font-size: 14px;
-        display: block;
-        overflow-x: auto;
     }
     .ranking-preview-table th,
     .ranking-preview-table td {
-        padding: 10px 8px;
+        padding: 12px 8px;
         font-size: 14px;
+    }
+    .btn-ver-ranking {
+        font-size: 14px;
+        padding: 10px 24px;
     }
     .sobre-title {
         font-size: 22px;
@@ -317,6 +611,47 @@
     .apresentacao-btn {
         padding: 12px 28px;
         font-size: 16px;
+    }
+    .team-section {
+        margin-top: 40px;
+        padding: 0 20px;
+    }
+    .team-title {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+    .team-cards {
+        gap: 30px;
+    }
+    .team-card {
+        padding: 25px;
+        min-width: 280px;
+    }
+    .team-name {
+        font-size: 18px;
+    }
+    .team-role {
+        font-size: 14px;
+    }
+    .team-description {
+        font-size: 14px;
+    }
+    
+    .contact-section {
+        margin-top: 40px;
+        padding: 30px 20px;
+    }
+    
+    .contact-title {
+        font-size: 24px;
+    }
+    
+    .contact-text {
+        font-size: 15px;
+    }
+    
+    .contact-item {
+        font-size: 14px;
     }
 }
 
@@ -336,5 +671,45 @@
     }
     .main-search-btn {
         padding: 12px 24px;
+    }
+    .team-cards {
+        flex-direction: column;
+        gap: 25px;
+    }
+    .team-card {
+        padding: 20px;
+        min-width: 100%;
+    }
+    .team-photo {
+        width: 100px;
+        height: 100px;
+    }
+    .photo-placeholder {
+        font-size: 30px;
+    }
+    .team-name {
+        font-size: 17px;
+    }
+    .team-description {
+        font-size: 13px;
+    }
+    
+    .contact-section {
+        margin-top: 30px;
+        padding: 25px 15px;
+    }
+    
+    .contact-title {
+        font-size: 22px;
+    }
+    
+    .contact-text {
+        font-size: 14px;
+    }
+    
+    .contact-item {
+        font-size: 13px;
+        flex-direction: column;
+        gap: 8px;
     }
 }
