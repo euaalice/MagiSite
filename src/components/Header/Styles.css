@@ -1,5 +1,5 @@
 nav {
-  background: radial-gradient(circle at center, #4a1d7f 0%, #29044e 70%);
+  background: #355169;
   border-bottom: none;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   padding: 0;
@@ -35,39 +35,55 @@ nav ul li {
 }
 
 nav ul li a {
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
   font-weight: 600;
   font-size: 18px;
   padding: 10px 22px;
-  border-radius: 8px;
+  border-radius: 20px;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
   letter-spacing: 0.5px;
   display: inline-block;
 }
 
 nav ul li a.active, nav ul li a:hover {
-  background: rgba(255,255,255,0.15);
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
 }
 
 .apresentacao-btn {
-  background: linear-gradient(90deg, #ffe082 0%, #ffd600 100%);
-  color: #222 !important;
-  border-radius: 12px;
+  background: #355169;
+  color: #ffffff !important;
+  border-radius: 20px;
   padding: 12px 32px;
   font-size: 17px;
   font-weight: 700;
   margin-right: 8px;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px rgba(255, 214, 0, 0.10);
+  box-shadow: 0 2px 8px rgba(53, 81, 105, 0.3);
 }
 
 .apresentacao-btn:hover {
-  background: linear-gradient(90deg, #ffd600 0%, #ffe082 100%);
-  color: #222 !important;
-  box-shadow: 0 4px 18px rgba(255, 214, 0, 0.18);
+  background: #2a4153;
+  color: #ffffff !important;
+  box-shadow: 0 4px 18px rgba(53, 81, 105, 0.5);
+}
+
+@media (max-width: 900px) {
+  nav ul li {
+    margin: 0 12px;
+  }
+
+  nav ul li a {
+    font-size: 16px;
+    padding: 8px 18px;
+  }
+
+  .apresentacao-btn {
+    font-size: 15px;
+    padding: 10px 24px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -76,11 +92,19 @@ nav ul li a.active, nav ul li a:hover {
     min-height: unset;
     padding: 10px 0;
   }
+
   nav ul li {
-    margin: 8px 0;
+    margin: 6px 0;
   }
+
   nav ul li a {
-    font-size: 16px;
-    padding: 8px 12px;
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .apresentacao-btn {
+    font-size: 14px;
+    padding: 8px 20px;
+    margin-right: 0;
   }
 }

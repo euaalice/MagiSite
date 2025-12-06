@@ -1,6 +1,6 @@
 .ranking-container {
     min-height: calc(100vh - 80px);
-    background: #f7f7fa;
+    background: #ffffff;
     padding: 40px 20px;
 }
 
@@ -15,7 +15,7 @@
 
 .ranking-title {
     text-align: center;
-    color: #222;
+    color: #000000;
     font-size: 32px;
     margin-bottom: 30px;
 }
@@ -35,37 +35,37 @@
 }
 
 .ranking-table th {
-    background: #f5f5f5;
-    color: #222;
+    background: #355169;
+    color: #ffffff;
     font-weight: 700;
 }
 
 .ranking-table tr:nth-child(even) {
-    background: #f7f7fa;
+    background: #f5f5f5;
 }
 
 .ranking-table tr:hover {
-    background: #e9e9f0;
+    background: #d4dce3;
 }
 
 .ranking-pos {
     font-weight: bold;
-    color: #222;
+    color: #000000;
     font-size: 18px;
 }
 
 .ranking-nome {
     font-weight: 600;
-    color: #222;
+    color: #000000;
 }
 
 .ranking-media {
-    color: #444;
+    color: #000000;
     font-weight: 600;
 }
 
 .ranking-quantidade {
-    color: #666;
+    color: #000000;
 }
 
 .painel-comentarios {
@@ -96,11 +96,54 @@
 }
 
 @media (max-width: 900px) {
+    .ranking-container {
+        padding: 20px 15px;
+    }
+
     .ranking-content {
         flex-direction: column !important;
+        padding: 30px 20px;
     }
+
+    .ranking-title {
+        font-size: 26px;
+    }
+
+    .ranking-table {
+        font-size: 14px;
+        display: block;
+        overflow-x: auto;
+    }
+
+    .ranking-table th,
+    .ranking-table td {
+        padding: 10px 8px;
+        font-size: 14px;
+    }
+
+    .ranking-pos {
+        font-size: 16px;
+    }
+
     .painel-comentarios {
         margin-top: 24px;
         max-width: 100%;
+        padding: 18px 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    .ranking-content {
+        padding: 20px 15px;
+    }
+
+    .ranking-title {
+        font-size: 22px;
+    }
+
+    .ranking-table th,
+    .ranking-table td {
+        padding: 8px 6px;
+        font-size: 12px;
     }
 }

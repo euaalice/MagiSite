@@ -18,9 +18,9 @@
     text-align: center;
     height: 39pc;
     height: 0px;
-    background-color: #712fda;
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, #505050 0%, #712fda 100%, #505050 5%);
+    background-color: #355169;
+    background: #ffffff;
+    background: linear-gradient(90deg, #ffffff 0%, #355169 100%, #ffffff 5%);
 }
 .lista-produtos article{
     background: #FFF;
@@ -33,9 +33,9 @@
 
 .lista-produtos article a{
     height: 42px;
-    border-radius: 5px;
-    border: 1px solid #712fda;
-    color: #712fda;
+    border-radius: 20px;
+    border: 2px solid #355169;
+    color: #355169;
     background: none;
     margin: 10px 10px 0px;
     text-decoration: none;
@@ -47,10 +47,10 @@
 
 .lista-produtos article a:hover{
     height: 42px;
-    border-radius: 5px;
-    border: 2px solid #712fda;
-    background: #712fda;
-    color: #FFF;
+    border-radius: 20px;
+    border: 2px solid #355169;
+    background: #355169;
+    color: #ffffff;
     margin-top: 10px;
     text-decoration: none;
     display: flex;
@@ -65,7 +65,7 @@
     width: 20pc;
     display: inline-block;
     border-radius: 0px 0px 5px 5px;
-    background: #712fda;
+    background: #355169;
 }
 .lista-produtos article div{
     display: block;
@@ -79,7 +79,7 @@
     justify-content: center;
     align-items: center;
     min-height: calc(100vh - 80px);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #ffffff;
     padding: 20px;
 }
 
@@ -97,7 +97,7 @@
 
 .auth-title {
     text-align: center;
-    color: #333;
+    color: #000000;
     margin-bottom: 30px;
     font-size: 28px;
     font-weight: 600;
@@ -191,4 +191,57 @@
 .toggle-btn:hover {
     color: #764ba2;
     text-decoration: underline;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+    .lista-produtos {
+        padding: 0 10px;
+    }
+
+    .lista-produtos article {
+        max-width: 100%;
+        margin: 0 5px 15px;
+    }
+
+    .lista-produtos article img {
+        height: 12pc;
+        width: 100%;
+    }
+
+    .auth-box {
+        padding: 30px 20px;
+    }
+
+    .auth-title {
+        font-size: 24px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    .form-input {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+
+    .btn-submit {
+        font-size: 14px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 600px) {
+    .lista-produtos article {
+        margin: 0 0 15px;
+    }
+
+    .auth-box {
+        padding: 20px 15px;
+    }
+
+    .auth-title {
+        font-size: 20px;
+    }
 }

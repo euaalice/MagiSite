@@ -7,6 +7,9 @@ const Apresentacao = () => {
     const navigate = useNavigate();
     const [ranking, setRanking] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+    const [searchLoading, setSearchLoading] = useState(false);
 
     useEffect(() => {
         const fetchRanking = async () => {
@@ -23,17 +26,97 @@ const Apresentacao = () => {
         fetchRanking();
     }, []);
 
+    useEffect(() => {
+        const searchMagistrados = async () => {
+            if (searchTerm.trim().length === 0) {
+                setSearchResults([]);
+                return;
+            }
+
+            setSearchLoading(true);
+            try {
+                const response = await api.post("buscar_magistrado", { texto: searchTerm });
+                console.log("Resposta da API:", response.data);
+                console.log("Tipo de dados:", typeof response.data);
+                console.log("É um array?", Array.isArray(response.data));
+                
+                // Se for um array, usa direto. Se for um objeto, converte para array
+                const dados = Array.isArray(response.data) ? response.data : [response.data];
+                setSearchResults(dados);
+            } catch (error) {
+                console.error("Erro ao buscar magistrados:", error);
+                setSearchResults([]);
+            } finally {
+                setSearchLoading(false);
+            }
+        };
+
+        const debounceTimer = setTimeout(() => {
+            searchMagistrados();
+        }, 300);
+
+        return () => clearTimeout(debounceTimer);
+    }, [searchTerm]);
+
     return (
         <div className="apresentacao-container">
             <div className="apresentacao-content">
                 <div className="apresentacao-header apresentacao-bg-neon">
                     <div className="apresentacao-title">MagiScore</div>
                     <div className="apresentacao-desc">
-                        Bem-vindo à plataforma de avaliação e ranking de magistrados de São Paulo.<br/>
-                        Aqui você pode consultar, avaliar e acompanhar o desempenho dos magistrados do TJSP de forma transparente e colaborativa.
+                        A plataforma definitiva para avaliação e ranking de magistrados de São Paulo.<br/>
+                        Transparência, colaboração e dados do TJSP ao seu alcance.
                     </div>
-                    <div className="apresentacao-btns">
-                        <button className="apresentacao-btn" onClick={() => navigate('/main/')}>Login / Cadastrar</button>
+                    
+                    <div className="search-section">
+                        <div className="search-box">
+                            <input 
+                                type="text" 
+                                placeholder="Buscar por nome ou comarca..." 
+                                className="main-search-input"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                            <button className="main-search-btn" onClick={() => navigate('/inicial/')}>
+                                Pesquisar
+                            </button>
+                        </div>
+                        {searchTerm && (
+                            <div className="search-results">
+                                {searchLoading ? (
+                                    <div className="search-result-item">Buscando...</div>
+                                ) : searchResults.length > 0 ? (
+                                    searchResults.map((magistrado, index) => (
+                                        <div 
+                                            key={index} 
+                                            className="search-result-item"
+                                            onClick={() => {
+                                                navigate('/inicial/');
+                                            }}
+                                        >
+                                            {magistrado.Descricao || magistrado.nome || `Magistrado ${index + 1}`}
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div className="search-result-item">Nenhum magistrado encontrado</div>
+                                )}
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="features-section">
+                        <div className="feature-item">
+                            <div className="feature-icon">🛡️</div>
+                            <div className="feature-title">Avaliações Seguras</div>
+                        </div>
+                        <div className="feature-item">
+                            <div className="feature-icon">📊</div>
+                            <div className="feature-title">Ranking Atualizado</div>
+                        </div>
+                        <div className="feature-item">
+                            <div className="feature-icon">🏛️</div>
+                            <div className="feature-title">Dados do TJSP</div>
+                        </div>
                     </div>
                 </div>
 
