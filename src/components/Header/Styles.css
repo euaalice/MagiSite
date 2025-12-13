@@ -79,7 +79,7 @@ nav.navbar-hidden {
   background: none;
   border: none;
   cursor: pointer;
-  font-family: "SF Pro Text","Myriad Set Pro","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+  font-family: Arial, sans-serif;
   min-width: 100px;
   text-align: center;
 }
@@ -114,6 +114,143 @@ nav.navbar-hidden {
   background: #f0f0f0;
   color: #355169 !important;
   transform: translateY(-2px);
+}
+
+/* User Menu Styles */
+.user-menu-container {
+  position: relative;
+}
+
+.user-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+  color: #ffffff;
+}
+
+.user-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.user-avatar,
+.user-avatar-placeholder {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-avatar-placeholder {
+  background: #ffffff;
+  color: #355169;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.user-name {
+  font-size: 15px;
+  font-weight: 500;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-type-badge {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  min-width: 240px;
+  z-index: 1000;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.user-info {
+  padding: 16px;
+}
+
+.user-email {
+  font-size: 14px;
+  color: #333333;
+  margin-bottom: 5px;
+  word-break: break-word;
+}
+
+.user-type {
+  font-size: 13px;
+  color: #666666;
+  text-transform: capitalize;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #e0e0e0;
+  margin: 0;
+}
+
+.dropdown-item {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: none;
+  text-align: left;
+  font-size: 14px;
+  color: #333333;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dropdown-item:hover {
+  background: #f5f5f5;
+}
+
+.dropdown-item:first-of-type {
+  border-radius: 0;
+}
+
+.dropdown-item:last-of-type {
+  border-radius: 0 0 12px 12px;
+}
+
+.logout-btn {
+  color: #d32f2f;
+  font-weight: 600;
+}
+
+.logout-btn:hover {
+  background: #ffebee;
 }
 
 @media (max-width: 900px) {

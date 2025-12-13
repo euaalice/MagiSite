@@ -1,12 +1,16 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useAuth } from '../../contexts/AuthContext';
 import './Styles.css';
 
 const NavBar = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState('home');
+  const [showUserMenu, setShowUserMenu] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { isAuthenticated, user, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,6 +59,7 @@ const NavBar = () => {
   };
 
   const isHomePage = location.pathname === '/' || location.pathname === '';
+  const isInicialPage = location.pathname === '/inicial/';
 
   return (
     <nav className={isVisible ? "navbar-visible" : "navbar-hidden"}>
@@ -63,48 +68,98 @@ const NavBar = () => {
           <img src="/MagisIcon.png" alt="MagiScore" className="nav-icon" />
         </NavLink>
         
-        <ul className="nav-menu">
-          {isHomePage ? (
-            <>
-              <li>
-                <button 
-                  onMouseEnter={() => scrollToSection('apresentacao-header')}
-                  className={`nav-section-btn ${activeSection === 'home' ? 'active' : ''}`}
-                >
-                  Início
-                </button>
-              </li>
-              <li>
-                <button 
-                  onMouseEnter={() => scrollToSection('ranking-preview')}
-                  className={`nav-section-btn ${activeSection === 'ranking' ? 'active' : ''}`}
-                >
-                  Ranking
-                </button>
-              </li>
-              <li>
-                <button 
-                  onMouseEnter={() => scrollToSection('sobre-box')}
-                  className={`nav-section-btn ${activeSection === 'sobre' ? 'active' : ''}`}
-                >
-                  Sobre
-                </button>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                <NavLink to="/inicial/">Inicial</NavLink>
-              </li>
-              <li>
-                <NavLink to="/ranking/">Ranking</NavLink>
-              </li>
-            </>
-          )}
-        </ul>
+        {!isInicialPage && (
+          <ul className="nav-menu">
+            {isHomePage ? (
+              <>
+                <li>
+                  <button 
+                    onMouseEnter={() => scrollToSection('apresentacao-header')}
+                    className={`nav-section-btn ${activeSection === 'home' ? 'active' : ''}`}
+                  >
+                    Início
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onMouseEnter={() => scrollToSection('ranking-preview')}
+                    className={`nav-section-btn ${activeSection === 'ranking' ? 'active' : ''}`}
+                  >
+                    Ranking
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onMouseEnter={() => scrollToSection('sobre-box')}
+                    className={`nav-section-btn ${activeSection === 'sobre' ? 'active' : ''}`}
+                  >
+                    Sobre
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <NavLink to="/inicial/">Inicial</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/ranking/">Ranking</NavLink>
+                </li>
+              </>
+            )}
+          </ul>
+        )}
 
         <div className="nav-login">
-          <NavLink to="/main/" className="nav-login-btn">Login / Cadastrar</NavLink>
+          {isAuthenticated ? (
+            <div className="user-menu-container">
+              <button 
+                className="user-btn"
+                onClick={() => setShowUserMenu(!showUserMenu)}
+              >
+                {user?.foto ? (
+                  <img src={user.foto} alt={user.nome} className="user-avatar" />
+                ) : (
+                  <div className="user-avatar-placeholder">
+                    {user?.nome?.charAt(0).toUpperCase()}
+                  </div>
+                )}
+                <span className="user-name">{user?.nome}</span>
+                <span className="user-type-badge">{user?.tipo}</span>
+              </button>
+              
+              {showUserMenu && (
+                <div className="user-dropdown">
+                  <div className="user-info">
+                    <p className="user-email">{user?.email}</p>
+                    <p className="user-type">Tipo: {user?.tipo}</p>
+                  </div>
+                  <div className="dropdown-divider"></div>
+                  <button 
+                    className="dropdown-item"
+                    onClick={() => {
+                      setShowUserMenu(false);
+                      navigate('/inicial');
+                    }}
+                  >
+                    Meu Perfil
+                  </button>
+                  <button 
+                    className="dropdown-item logout-btn"
+                    onClick={() => {
+                      logout();
+                      setShowUserMenu(false);
+                      navigate('/');
+                    }}
+                  >
+                    Sair
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <NavLink to="/login" className="nav-login-btn">Login / Cadastrar</NavLink>
+          )}
         </div>
       </div>
     </nav>

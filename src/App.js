@@ -1,22 +1,38 @@
 import { Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
 import Main from './pages/Main';
 import Inicial from './pages/Inicial';
 import Ranking from './pages/Ranking';
 import Apresentacao from './pages/Apresentação';
-import NavBar from './components/Header'
+import Login from './pages/Login';
+import AuthCallback from './pages/AuthCallback';
+import NavBar from './components/Header';
+import ProtectedRoute from './components/ProtectedRoute';
  
 const App = () => {
    return (
-      <>
-        <NavBar />
+      <AuthProvider>
+         <NavBar />
 
          <Routes>
             <Route path="/" element={<Apresentacao />} />
-            <Route path="/main/" element={<Main />} />
-            <Route path="/inicial/" element={<Inicial />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
+            
+            {/* Rotas protegidas - requerem login */}
+            <Route path="/main/" element={
+               <ProtectedRoute>
+                  <Main />
+               </ProtectedRoute>
+            } />
+            <Route path="/inicial/" element={
+               <ProtectedRoute>
+                  <Inicial />
+               </ProtectedRoute>
+            } />
             <Route path="/ranking/" element={<Ranking />} />
          </Routes>
-      </>
+      </AuthProvider>
    );
 };
  
