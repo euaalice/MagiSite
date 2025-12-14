@@ -2,7 +2,7 @@ import axios from "axios"
 
 const baseURLHerku = "https://magiscoreserver-8a06a6a14420.herokuapp.com/server/"
 const baseURLLocal = "http://localhost:8080/server/"
-const api = axios.create({baseURL:baseURLLocal  });
+const api = axios.create({baseURL:baseURLHerku  });
 
 // Adiciona o token no header de todas as requisições
 api.interceptors.request.use(
