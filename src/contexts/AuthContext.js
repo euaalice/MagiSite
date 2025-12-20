@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
                 try {
                     const response = await api.get('/auth/status');
                     if (response.data.authenticated) {
+                        console.log('Dados do usuário carregados:', response.data.user);
                         setUser(response.data.user);
                         setToken(storedToken);
                     } else {
@@ -89,9 +90,24 @@ export const AuthProvider = ({ children }) => {
     };
 
     // Login com Google
-    const loginWithGoogle = () => {
+    const loginWithGoogle = (tipoUsuario = 'comum', nomeValidado = '', dadosTJSP = null) => {
+        console.log('🔵 loginWithGoogle chamado com:');
+        console.log('   - Tipo:', tipoUsuario);
+        console.log('   - Nome:', nomeValidado);
+        console.log('   - Dados TJSP:', dadosTJSP);
+        
+        // Codifica o tipo, nome validado e dados do TJSP no state usando btoa (browser-compatible)
+        const state = btoa(JSON.stringify({ 
+            tipo: tipoUsuario,
+            nomeValidado: nomeValidado,
+            dadosTJSP: dadosTJSP
+        }));
+        
+        console.log('Enviando state:', state);
+        console.log('Dados completos:', { tipo: tipoUsuario, nomeValidado: nomeValidado, dadosTJSP: dadosTJSP });
+        
         const backendUrl = api.defaults.baseURL.replace('/server/', '');
-        window.location.href = `${backendUrl}/server/auth/google`;
+        window.location.href = `${backendUrl}/server/auth/google?state=${encodeURIComponent(state)}`;
     };
 
     // Logout

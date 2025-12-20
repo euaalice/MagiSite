@@ -8,9 +8,15 @@ const NavBar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState('home');
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { isAuthenticated, user, logout } = useAuth();
+
+  // Reset image error when user changes
+  useEffect(() => {
+    setImageError(false);
+  }, [user?.foto]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -117,8 +123,17 @@ const NavBar = () => {
                 className="user-btn"
                 onClick={() => setShowUserMenu(!showUserMenu)}
               >
-                {user?.foto ? (
-                  <img src={user.foto} alt={user.nome} className="user-avatar" />
+                {user?.foto && !imageError ? (
+                  <img 
+                    src={user.foto} 
+                    alt={user.nome} 
+                    className="user-avatar" 
+                    onError={() => {
+                      console.error('Erro ao carregar imagem:', user.foto);
+                      setImageError(true);
+                    }}
+                    referrerPolicy="no-referrer"
+                  />
                 ) : (
                   <div className="user-avatar-placeholder">
                     {user?.nome?.charAt(0).toUpperCase()}
